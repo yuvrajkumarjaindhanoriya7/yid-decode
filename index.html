@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="YJD decode — a browser-based code debugger." />
+  <title>YJD decode</title>
+  <link rel="stylesheet" href="./src/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="./" aria-label="YJD decode home">
+      <span class="logo">YJ</span>
+      <span><strong>YJD decode</strong><small>Find errors. Debug faster.</small></span>
+    </a>
+    <a class="github-link" href="https://github.com/" target="_blank" rel="noreferrer">GitHub ready</a>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <p class="eyebrow">WEB CODE DEBUGGER</p>
+      <h1>Find the bug before it finds you.</h1>
+      <p class="hero-copy">Paste code, upload a file, or drop one here. YJD decode checks JavaScript, HTML, and CSS and gives you a safe preview.</p>
+    </section>
+
+    <div class="toolbar">
+      <label class="select-wrap">Language
+        <select id="language" aria-label="Choose language">
+          <option value="javascript">JavaScript</option>
+          <option value="html">HTML</option>
+          <option value="css">CSS</option>
+        </select>
+      </label>
+      <button class="primary" id="debugBtn">Debug code</button>
+      <button id="exampleBtn">Load example</button>
+      <label class="file-button">Upload file<input id="fileInput" type="file" accept=".js,.mjs,.html,.htm,.css,.txt" /></label>
+      <button id="downloadBtn">Download code</button>
+      <button class="danger" id="clearBtn">Clear</button>
+    </div>
+
+    <section class="workspace">
+      <article class="panel editor-panel">
+        <div class="panel-header"><span>Code editor</span><span id="fileName">Untitled</span></div>
+        <div class="editor-wrap" id="dropZone">
+          <textarea id="code" spellcheck="false" placeholder="Write or paste your code here..."></textarea>
+          <span class="drop-hint">Drop a code file here</span>
+        </div>
+      </article>
+
+      <article class="panel report-panel">
+        <div class="panel-header"><span>Debug report</span><span id="status">Ready</span></div>
+        <div class="summary">
+          <span class="badge error" id="errorCount">0 errors</span>
+          <span class="badge warning" id="warningCount">0 warnings</span>
+          <span class="badge success" id="successCount">Ready</span>
+        </div>
+        <div class="issues" id="issues"><div class="empty">Run “Debug code” to inspect your code.</div></div>
+        <div class="panel-header"><span>Safe preview</span><span>Sandboxed iframe</span></div>
+        <div class="preview"><iframe id="preview" sandbox="allow-scripts"></iframe></div>
+        <div class="panel-header"><span>Console output</span></div>
+        <pre class="console" id="console">No output yet.</pre>
+      </article>
+    </section>
+
+    <footer>Client-side demo. Never execute untrusted code on your main page or server without proper isolation.</footer>
+  </main>
+  <script src="./src/app.js"></script>
+</body>
+</html>
