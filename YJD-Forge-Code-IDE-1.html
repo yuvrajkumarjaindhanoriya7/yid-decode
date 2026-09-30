@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>YJD Forge — Web Code IDE</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#0b0f14;color:#dbe3ee;font-family:Segoe UI,Arial,sans-serif;overflow:hidden}
+.app{height:100vh;display:flex;flex-direction:column}.top{height:44px;background:#111720;border-bottom:1px solid #26303b;display:flex;align-items:center;padding:0 13px;gap:15px}
+.brand{font-size:16px;font-weight:800;color:#61dafb}.brand b{color:#fff}.brand small{font-size:9px;color:#7d8997;margin-left:6px;letter-spacing:1px}
+.menu{font-size:12px;color:#aab5c2}.title{margin:auto;color:#8d99a7;font-size:12px}.dots{display:flex;gap:7px}.dot{width:10px;height:10px;border-radius:50%;background:#53606d}
+.body{display:flex;flex:1;min-height:0}.activity{width:52px;background:#090d12;border-right:1px solid #252e38;display:flex;flex-direction:column}
+.act{height:52px;display:flex;justify-content:center;align-items:center;color:#687585;font-size:19px;border-left:2px solid transparent}.act.active{color:#fff;border-left-color:#61dafb;background:#121a23}
+.sidebar{width:225px;background:#0d131a;border-right:1px solid #252e38}.side-title{padding:13px 14px 9px;font-size:10px;letter-spacing:1.4px;color:#8793a1}.project{padding:5px 14px;color:#d5dce5;font-size:12px;font-weight:700}.folder{padding:8px 15px;color:#8995a4;font-size:12px}.file{padding:7px 25px;font-size:12px;cursor:pointer}.file:hover,.file.active{background:#1a2531;color:#fff}
+.main{flex:1;min-width:0;display:flex;flex-direction:column}.tabs{height:37px;background:#111720;border-bottom:1px solid #26303b;display:flex}.tab{padding:10px 15px;font-size:12px;color:#8e9aa8;border-right:1px solid #26303b}.tab.active{color:#fff;background:#0b0f14;border-top:2px solid #61dafb}
+.tools{height:40px;display:flex;gap:7px;align-items:center;padding:5px 9px;background:#0b0f14;border-bottom:1px solid #26303b}button{background:#202a36;border:1px solid #354252;color:#dbe3ee;border-radius:5px;padding:6px 10px;font-size:11px;cursor:pointer}button:hover{background:#2a3746}.run{background:#238636;border-color:#2ea043}.fix{background:#8250df;border-color:#9b6be8}.search{margin-left:auto;background:#0e141b;border:1px solid #34404e;color:#ddd;padding:6px 9px;border-radius:5px;width:150px}
+.editor-area{flex:1;min-height:0;display:flex}.lines{width:49px;padding:11px 9px 0 0;text-align:right;background:#0b0f14;color:#53606e;font:14px/1.55 Consolas,monospace;overflow:hidden;user-select:none}.editor{flex:1;border:0;outline:0;resize:none;background:#0b0f14;color:#dce4ee;padding:11px 12px;font:14px/1.55 Consolas,monospace;white-space:pre;tab-size:2}
+.preview{width:40%;display:flex;flex-direction:column;border-left:1px solid #26303b;background:white}.preview-head{height:40px;background:#111720;color:#cbd5df;display:flex;align-items:center;padding:0 9px;font-size:12px}.preview-head span{margin-right:auto}.preview iframe{border:0;flex:1;background:white}
+.bottom{height:215px;background:#090d12;border-top:1px solid #303a46;display:flex;flex-direction:column}.paneltabs{height:36px;display:flex;align-items:center;gap:22px;padding:0 13px;border-bottom:1px solid #252e38;font-size:11px}.pt{height:36px;display:flex;align-items:center;color:#7f8b99;cursor:pointer}.pt.active{color:#fff;border-bottom:2px solid #61dafb}.badge{margin-left:5px;padding:1px 5px;border-radius:8px;background:#303a46}.output{padding:9px 13px;overflow:auto;font:12px/1.55 Consolas,monospace}.error{color:#ff7b72}.warn{color:#d29922}.ok{color:#3fb950}.muted{color:#7d8997}
+.issue{padding:8px 9px;border:1px solid #293440;background:#111821;border-radius:6px;margin-bottom:7px}.issue-top{display:flex;gap:8px}.suggest{margin-top:7px;padding:7px;background:#0b1118;border-left:3px solid #a371f7;color:#c9d1d9}.why{color:#8d99a7;font-size:11px;margin-top:4px}.actions{margin-top:7px;display:flex;gap:6px}.actions button{font-size:10px;padding:4px 8px}
+.status{height:22px;background:#1769aa;color:#fff;font-size:10px;display:flex;align-items:center;padding:0 10px;gap:18px}.status .right{margin-left:auto}
+@media(max-width:850px){.sidebar{width:175px}.preview{width:35%}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="top">
+ <div class="brand">YJD <b>Forge</b><small>CODE IDE</small></div><div class="menu">File</div><div class="menu">Edit</div><div class="menu">View</div><div class="menu">Run</div>
+ <div class="title">index.html — YJD Forge</div><div class="dots"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
+</header>
+<div class="body">
+ <nav class="activity"><div class="act active">▦</div><div class="act">⌕</div><div class="act">⑂</div><div class="act">🐞</div><div class="act">⚙</div></nav>
+ <aside class="sidebar">
+  <div class="side-title">EXPLORER</div><div class="project">YJD-FORGE</div><div class="folder">▼ WEB</div>
+  <div class="file active" data-f="html">📄 index.html</div><div class="file" data-f="css">🎨 style.css</div><div class="file" data-f="js">⚡ script.js</div>
+  <div class="folder">▶ ASSETS</div><div class="side-title">YJD ANALYZER</div><div class="muted" style="padding:0 14px;font-size:11px">Live static analysis enabled</div>
+ </aside>
+ <main class="main">
+  <div class="tabs"><div class="tab active">index.html ×</div><div class="tab">style.css</div><div class="tab">script.js</div></div>
+  <div class="tools"><button class="run" id="run">▶ Run</button><button class="fix" id="quickFix">💡 Quick Fix</button><button id="debug">🐞 Analyze</button><button id="format">Format</button><button id="clear">Clear</button><input id="find" class="search" placeholder="Find…"></div>
+  <div class="editor-area"><div id="lines" class="lines">1</div><textarea id="editor" class="editor" spellcheck="false"><!DOCTYPE html>
+<html>
+<head>
+  <title>YJD Forge Demo</title>
+  <style>
+    body { font-family: Arial; text-align: center; padding: 40px; }
+    h1 { color: #238636; }
+  </style>
+</head>
+<body>
+  <h1>Hello from YJD Forge 🚀</h1>
+  <p>Try changing showMessage to showMesage to test Quick Fix.</p>
+  <button onclick="showMesage()">Test JavaScript</button>
+
+  <script>
+    function showMessage() {
+      console.log("Button works!");
+      alert("YJD Forge is running!");
+    }
+  </script>
+</body>
+</html></textarea></div>
+  <section class="bottom"><div class="paneltabs"><div class="pt active" data-p="problems">PROBLEMS <span class="badge" id="count">0</span></div><div class="pt" data-p="console">CONSOLE</div><div class="pt" data-p="debug">DEBUG CONSOLE</div></div><div id="output" class="output"></div></section>
+ </main>
+ <section class="preview"><div class="preview-head"><span>LIVE PREVIEW</span><button id="refresh">↻ Refresh</button></div><iframe id="preview" sandbox="allow-scripts allow-modals"></iframe></section>
+</div>
+<footer class="status"><span id="cursor">Ln 1, Col 1</span><span>HTML</span><span>UTF-8</span><span class="right">YJD Forge • Ready</span></footer>
+</div>
+
+<script>
+const ed=document.getElementById('editor'), lines=document.getElementById('lines'), out=document.getElementById('output'), count=document.getElementById('count'), frame=document.getElementById('preview');
+let lastHtml=ed.value, issues=[];
+
+function esc(s){return s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+function update(){
+ const a=ed.value.split('\n'); lines.textContent=a.map((_,i)=>i+1).join('\n');
+ const p=ed.selectionStart,b=ed.value.slice(0,p),ln=b.split('\n').length,col=p-b.lastIndexOf('\n');
+ document.getElementById('cursor').textContent=`Ln ${ln}, Col ${col}`;
+}
+function analyze(){
+ const code=ed.value, ls=code.split('\n'); issues=[];
+ // Unclosed HTML tags
+ const voids=new Set(['area','base','br','col','embed','hr','img','input','link','meta','param','source','track','wbr']);
+ const stack=[];
+ const re=/<(\/?)([a-z][\w-]*)(?:\s[^>]*)?>/gi; let m;
+ while((m=re.exec(code))){
+   let tag=m[2].toLowerCase(), line=code.slice(0,m.index).split('\n').length;
+   if(m[1]){let i=stack.lastIndexOf(tag);if(i>=0)stack.splice(i,1);else issues.push({type:'error',line,msg:`Closing tag </${tag}> has no matching opening tag.`,fix:null,why:'HTML elements must be opened and closed in a valid order.'})}
+   else if(!voids.has(tag)&&!m[0].endsWith('/>'))stack.push({tag,line});
+ }
+ stack.forEach(x=>issues.push({type:'error',line:x.line,msg:`<${x.tag}> is not closed.`,fix:{text:`</${x.tag}>`,at:'end'},why:`Add a closing </${x.tag}> tag to complete the HTML element.`}));
+ // Missing closing script/style
+ for(const tag of ['script','style']) if((code.match(new RegExp(`<${tag}\\b`,'gi'))||[]).length>(code.match(new RegExp(`</${tag}>`,'gi'))||[]).length)
+   issues.push({type:'error',line:ls.length,msg:`<${tag}> block is not closed.`,fix:{text:`\n</${tag}>`,at:'end'},why:`The browser cannot reliably parse the rest of the document until the ${tag} block is closed.`});
+ // JS function-name typo detection: compare onclick calls to declared functions
+ const funcs=[...code.matchAll(/function\s+([A-Za-z_$][\w$]*)\s*\(/g)].map(x=>x[1]);
+ const calls=[...code.matchAll(/(?:onclick\s*=\s*["']|(?<!function\s))\b([A-Za-z_$][\w$]*)\s*\(/g)];
+ for(const c of calls){
+   const name=c[1],i=c.index,line=code.slice(0,i).split('\n').length;
+   if(!['if','for','while','switch','catch','console','alert','log','setTimeout','setInterval'].includes(name)&&!funcs.includes(name)){
+     let best=funcs.map(f=>[f,lev(name,f)]).sort((a,b)=>a[1]-b[1])[0];
+     if(best&&best[1]<=3) issues.push({type:'error',line,msg:`“${name}” is not defined.`,fix:{replace:name,with:best[0]},why:`YJD Analyzer found a similarly named function: ${best[0]}.`});
+     else issues.push({type:'error',line,msg:`“${name}” is not defined.`,fix:null,why:'Define the function before calling it, or check the spelling.'});
+   }
+ }
+ // Brace mismatch
+ const clean=code.replace(/(["'`])(?:\\.|(?!\1).)*\1/g,'');let o=(clean.match(/{/g)||[]).length,c=(clean.match(/}/g)||[]).length;
+ if(o!==c)issues.push({type:'error',line:ls.length,msg:`Brace mismatch: ${o} opening vs ${c} closing braces.`,fix:null,why:'Every opening { needs a matching closing }.'});
+ render();
+ return issues;
+}
+function lev(a,b){let d=Array.from({length:a.length+1},(_,i)=>[i]);for(let i=1;i<=b.length;i++)d[0][i]=i;for(let i=1;i<=a.length;i++){d[i]=[i];for(let j=1;j<=b.length;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));}return d[a.length][b.length]}
+function render(){
+ count.textContent=issues.length;
+ if(!issues.length){out.innerHTML='<span class="ok">✓ No problems found — YJD Analyzer is happy.</span>';return}
+ out.innerHTML=issues.map((x,i)=>`<div class="issue"><div class="issue-top"><span class="${x.type==='error'?'error':'warn'}">${x.type==='error'?'✕':'⚠'}</span><b>Line ${x.line}:</b><span>${esc(x.msg)}</span></div><div class="suggest">💡 <b>YJD Suggestion:</b> ${x.fix?fixText(x):esc(x.why)}<div class="why">${esc(x.why)}</div><div class="actions">${x.fix?`<button class="fixbtn" data-i="${i}">✨ Apply Fix</button>`:''}<button class="goto" data-i="${i}">Go to Line</button></div></div></div>`).join('');
+ document.querySelectorAll('.fixbtn').forEach(b=>b.onclick=()=>applyFix(+b.dataset.i));
+ document.querySelectorAll('.goto').forEach(b=>b.onclick=()=>gotoLine(+b.dataset.i));
+}
+function fixText(x){if(x.fix.replace)return `Replace <b>${esc(x.fix.replace)}</b> with <b>${esc(x.fix.with)}</b>.`;return `Add <b>${esc(x.fix.text.trim())}</b> at the end of the document.`}
+function applyFix(i){
+ const f=issues[i].fix;if(!f)return;
+ if(f.replace){const re=new RegExp('\\b'+f.replace.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'\\b');ed.value=ed.value.replace(re,f.with)}
+ else ed.value+=f.text;
+ update();analyze();run(false);
+}
+function gotoLine(i){let target=issues[i].line, pos=0;for(let n=1;n<target;n++)pos=ed.value.indexOf('\n',pos)+1;ed.focus();ed.selectionStart=ed.selectionEnd=Math.max(0,pos);ed.scrollTop=Math.max(0,(target-3)*22);update()}
+function run(show=true){analyze();frame.srcdoc=ed.value;lastHtml=ed.value;if(show)document.querySelector('.right').textContent='YJD Forge • Running';setTimeout(()=>document.querySelector('.right').textContent='YJD Forge • Ready',500)}
+document.getElementById('run').onclick=()=>run();
+document.getElementById('refresh').onclick=()=>run();
+document.getElementById('debug').onclick=()=>{analyze();document.querySelector('[data-p="problems"]').click()};
+document.getElementById('quickFix').onclick=()=>{analyze();if(issues.length){gotoLine(0)}else out.innerHTML='<span class="ok">✓ Nothing to fix.</span>'};
+document.getElementById('clear').onclick=()=>{ed.value='';update();analyze();frame.srcdoc=''};
+document.getElementById('format').onclick=()=>{ed.value=ed.value.replace(/>\s+</g,'><').replace(/^\s+|\s+$/gm,'');update();analyze()};
+ed.addEventListener('input',()=>{update();analyze()});ed.addEventListener('scroll',()=>lines.scrollTop=ed.scrollTop);
+ed.addEventListener('keydown',e=>{if(e.key==='Tab'){e.preventDefault();let p=ed.selectionStart;ed.value=ed.value.slice(0,p)+'  '+ed.value.slice(ed.selectionEnd);ed.selectionStart=ed.selectionEnd=p+2;update();analyze()}if(e.ctrlKey&&e.key==='Enter'){e.preventDefault();run()}});
+document.getElementById('find').oninput=e=>{let q=e.target.value;if(!q)return;let i=ed.value.toLowerCase().indexOf(q.toLowerCase());if(i>=0){ed.focus();ed.selectionStart=i;ed.selectionEnd=i+q.length}};
+document.querySelectorAll('.pt').forEach(t=>t.onclick=()=>{document.querySelectorAll('.pt').forEach(x=>x.classList.remove('active'));t.classList.add('active');if(t.dataset.p==='console')out.innerHTML='<span class="muted">Console output from the live preview will appear here.</span>';else if(t.dataset.p==='debug')out.innerHTML='<span class="muted">YJD Debug Console — static analysis + Quick Fix engine.</span>';else render()});
+document.querySelectorAll('.file').forEach(f=>f.onclick=()=>{document.querySelectorAll('.file').forEach(x=>x.classList.remove('active'));f.classList.add('active');if(f.dataset.f==='html')ed.value=lastHtml;else if(f.dataset.f==='css')ed.value='body {\\n  font-family: Arial;\\n  margin: 0;\\n}\\n';else ed.value='function showMessage() {\\n  console.log("Hello from YJD Forge");\\n}\\nshowMessage();';update();analyze()});
+update();analyze();run(false);
+</script>
+</body>
+</html>
